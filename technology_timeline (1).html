@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Technology Through Human Need</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #0a0a0c;
+    --fg: #e8e4dc;
+    --dim: #6b6560;
+    --accent: #c4956a;
+    --accent2: #7a9e7e;
+    --accent3: #8b7ec8;
+    --accent4: #c27272;
+    --accent5: #5e8fa8;
+    --accent6: #b8a03e;
+    --accent7: #c27299;
+    --accent8: #5ea89e;
+    --accent9: #a88b5e;
+    --accent10: #7e8bc8;
+    --accent11: #c2a072;
+    --accent12: #72a8c2;
+    --line: #1e1d1b;
+    --card-bg: #111114;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: 'EB Garamond', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .header {
+    padding: 60px 40px 40px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .header h1 {
+    font-size: 2.8rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .header h1 em {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .header .subtitle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    font-weight: 300;
+    color: var(--dim);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    max-width: 600px;
+    line-height: 1.7;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px 40px 80px;
+  }
+
+  .need-row {
+    margin-bottom: 48px;
+    border-top: 1px solid var(--line);
+    padding-top: 28px;
+    opacity: 0;
+    transform: translateY(16px);
+    animation: fadeUp 0.5s ease forwards;
+    scroll-margin-top: 60px;
+  }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .need-header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+
+  .need-name {
+    font-size: 1.35rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .need-question {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    font-weight: 300;
+    color: var(--dim);
+    letter-spacing: 0.04em;
+    font-style: normal;
+  }
+
+  .chain {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0;
+    line-height: 1;
+  }
+
+  .tech-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    white-space: nowrap;
+  }
+
+  .tech-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: var(--fg);
+    padding: 5px 10px;
+    background: var(--card-bg);
+    border-radius: 3px;
+    border: 1px solid var(--line);
+    transition: all 0.2s ease;
+    cursor: default;
+    position: relative;
+  }
+
+  .tech-name:hover {
+    border-color: var(--row-color, var(--accent));
+    background: #18181b;
+  }
+
+  .tech-name .era {
+    display: none;
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.6rem;
+    color: var(--dim);
+    background: #1a1a1d;
+    padding: 3px 7px;
+    border-radius: 2px;
+    white-space: nowrap;
+    border: 1px solid var(--line);
+    z-index: 10;
+  }
+
+  .tech-name:hover .era {
+    display: block;
+  }
+
+  .arrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--row-color, var(--accent));
+    padding: 0 6px;
+    opacity: 0.6;
+  }
+
+  .need-row:nth-child(1) { --row-color: var(--accent); animation-delay: 0.0s; }
+  .need-row:nth-child(2) { --row-color: var(--accent2); animation-delay: 0.05s; }
+  .need-row:nth-child(3) { --row-color: var(--accent3); animation-delay: 0.1s; }
+  .need-row:nth-child(4) { --row-color: var(--accent4); animation-delay: 0.15s; }
+  .need-row:nth-child(5) { --row-color: var(--accent5); animation-delay: 0.2s; }
+  .need-row:nth-child(6) { --row-color: var(--accent6); animation-delay: 0.25s; }
+  .need-row:nth-child(7) { --row-color: var(--accent7); animation-delay: 0.3s; }
+  .need-row:nth-child(8) { --row-color: var(--accent8); animation-delay: 0.35s; }
+  .need-row:nth-child(9) { --row-color: var(--accent9); animation-delay: 0.4s; }
+  .need-row:nth-child(10) { --row-color: var(--accent10); animation-delay: 0.45s; }
+  .need-row:nth-child(11) { --row-color: var(--accent11); animation-delay: 0.5s; }
+  .need-row:nth-child(12) { --row-color: var(--accent12); animation-delay: 0.55s; }
+
+  .need-name { color: var(--row-color); }
+
+  .note {
+    margin-top: 10px;
+    font-size: 0.88rem;
+    font-style: italic;
+    color: var(--dim);
+    line-height: 1.5;
+    max-width: 700px;
+  }
+
+  .footer-note {
+    margin-top: 60px;
+    border-top: 1px solid var(--line);
+    padding-top: 28px;
+    font-size: 0.85rem;
+    color: var(--dim);
+    line-height: 1.7;
+    max-width: 650px;
+  }
+
+  .nav {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+    padding-top: 12px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .nav-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 400;
+    color: var(--dim);
+    background: var(--card-bg);
+    border: 1px solid var(--line);
+    border-radius: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .nav-btn:hover {
+    color: var(--fg);
+    border-color: var(--btn-color, var(--accent));
+    background: #18181b;
+  }
+
+  .nav-btn.active {
+    color: var(--btn-color, var(--accent));
+    border-color: var(--btn-color, var(--accent));
+  }
+
+  @media (max-width: 600px) {
+    .nav { padding: 10px 20px 12px; }
+    .header { padding: 40px 20px 30px; }
+    .header h1 { font-size: 1.8rem; }
+    .container { padding: 10px 20px 60px; }
+    .tech-name { font-size: 0.7rem; padding: 4px 7px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>A History of Technology<br>Through <em>Human Need</em></h1>
+  <div class="subtitle">The progressive externalization of human capability, organized not by invention date but by the need each technology serves</div>
+</div>
+
+<div class="nav" id="nav"></div>
+
+<div class="container" id="content"></div>
+
+<script>
+const data = [
+  {
+    need: "Movement",
+    question: "How do I get there?",
+    chain: [
+      ["Bare feet", "forever"],
+      ["Shoes & sandals", "~40,000 BC"],
+      ["Dugout canoe", "~8,000 BC"],
+      ["Animal domestication", "~4,000 BC"],
+      ["Wheel & cart", "~3,500 BC"],
+      ["Sailing ship", "~3,000 BC"],
+      ["Steam locomotive", "1804"],
+      ["Bicycle", "1817"],
+      ["Automobile", "1886"],
+      ["Airplane", "1903"],
+      ["Jet engine", "1939"],
+      ["Spaceflight", "1961"],
+      ["Electric vehicle", "2010s"],
+    ],
+    note: "Each step decouples distance from physical effort — until movement becomes a scheduling problem, not a bodily one."
+  },
+  {
+    need: "Sustenance",
+    question: "How do I eat?",
+    chain: [
+      ["Foraging", "forever"],
+      ["Fire for cooking", "~1M BC"],
+      ["Spear & trap", "~400,000 BC"],
+      ["Agriculture", "~10,000 BC"],
+      ["Irrigation", "~6,000 BC"],
+      ["Plow", "~4,000 BC"],
+      ["Crop rotation", "~800 AD"],
+      ["Selective breeding", "~1700s"],
+      ["Mechanical reaper", "1831"],
+      ["Refrigeration", "1850s"],
+      ["Haber process", "1909"],
+      ["Green revolution", "1960s"],
+      ["GMOs", "1990s"],
+      ["Precision agriculture", "2010s"],
+    ],
+    note: "From caloric scarcity to caloric abundance — then the problem inverts to distribution, quality, and sustainability."
+  },
+  {
+    need: "Shelter",
+    question: "How do I survive the environment?",
+    chain: [
+      ["Caves", "forever"],
+      ["Animal hides", "~500,000 BC"],
+      ["Woven textiles", "~27,000 BC"],
+      ["Mud brick", "~7,000 BC"],
+      ["Timber framing", "~3,000 BC"],
+      ["Roman concrete", "~300 BC"],
+      ["Glass windows", "~100 AD"],
+      ["Central heating", "1885"],
+      ["Steel-frame building", "1880s"],
+      ["Air conditioning", "1902"],
+      ["Prefab housing", "1900s"],
+      ["Smart buildings", "2010s"],
+    ],
+    note: "Shelter externalizes thermoregulation, then comfort, then the entire relationship between body and climate."
+  },
+  {
+    need: "Memory",
+    question: "How do I preserve what I know?",
+    chain: [
+      ["Oral tradition", "forever"],
+      ["Cave painting", "~40,000 BC"],
+      ["Tally marks", "~20,000 BC"],
+      ["Cuneiform", "~3,400 BC"],
+      ["Alphabet", "~1,050 BC"],
+      ["Paper", "~100 AD"],
+      ["Printing press", "1440"],
+      ["Photography", "1826"],
+      ["Phonograph", "1877"],
+      ["Film", "1890s"],
+      ["Magnetic tape", "1928"],
+      ["Digital storage", "1950s"],
+      ["Cloud storage", "2000s"],
+      ["LLMs", "2020s"],
+    ],
+    note: "The line from cave painting to an LLM is: memory externalized, then made searchable, then made generative."
+  },
+  {
+    need: "Communication",
+    question: "How do I reach someone not here?",
+    chain: [
+      ["Spoken language", "~100,000 BC"],
+      ["Smoke signals / drums", "ancient"],
+      ["Written letters", "~2,400 BC"],
+      ["Postal systems", "~550 BC"],
+      ["Telegraph", "1837"],
+      ["Telephone", "1876"],
+      ["Radio broadcast", "1895"],
+      ["Television", "1927"],
+      ["Email", "1971"],
+      ["SMS", "1992"],
+      ["Social media", "2004"],
+      ["Video call", "2010s"],
+    ],
+    note: "Communication technology compresses space, then time, then collapses the distinction between public and private."
+  },
+  {
+    need: "Computation",
+    question: "How do I think beyond my own capacity?",
+    chain: [
+      ["Fingers", "forever"],
+      ["Tally sticks", "~20,000 BC"],
+      ["Abacus", "~2,700 BC"],
+      ["Algebra", "~800 AD"],
+      ["Logarithm tables", "1614"],
+      ["Slide rule", "1622"],
+      ["Mechanical calculator", "1642"],
+      ["Difference engine", "1822"],
+      ["Vacuum tube computer", "1940s"],
+      ["Transistor", "1947"],
+      ["Integrated circuit", "1958"],
+      ["Personal computer", "1970s"],
+      ["Neural networks", "2010s"],
+    ],
+    note: "From offloading arithmetic to offloading pattern recognition — each step externalizes a higher cognitive function."
+  },
+  {
+    need: "Healing",
+    question: "How do I fix the body?",
+    chain: [
+      ["Medicinal plants", "ancient"],
+      ["Trepanation", "~7,000 BC"],
+      ["Suturing", "~3,000 BC"],
+      ["Humorism & diagnosis", "~400 BC"],
+      ["Optics / lenses", "~1,000 AD"],
+      ["Microscope", "1590"],
+      ["Vaccination", "1796"],
+      ["Anesthesia", "1846"],
+      ["Germ theory", "1860s"],
+      ["X-ray", "1895"],
+      ["Antibiotics", "1928"],
+      ["Organ transplant", "1954"],
+      ["MRI", "1971"],
+      ["CRISPR", "2012"],
+      ["mRNA vaccines", "2020"],
+    ],
+    note: "Medicine externalizes the body's self-repair — first augmenting it, then overriding it, now editing its source code."
+  },
+  {
+    need: "Safety",
+    question: "How do I defend against threats?",
+    chain: [
+      ["Fists & teeth", "forever"],
+      ["Sharpened stone", "~3M BC"],
+      ["Spear", "~400,000 BC"],
+      ["Bronze weapons", "~3,300 BC"],
+      ["Fortification", "~3,000 BC"],
+      ["Iron weapons", "~1,200 BC"],
+      ["Crossbow", "~700 BC"],
+      ["Gunpowder", "~850 AD"],
+      ["Firearms", "~1300s"],
+      ["Surveillance systems", "1900s"],
+      ["Nuclear deterrence", "1945"],
+      ["Cybersecurity", "1970s"],
+      ["Autonomous defense", "2020s"],
+    ],
+    note: "Defense externalizes vigilance — then scales it until the threat itself becomes abstract and systemic."
+  },
+  {
+    need: "Coordination",
+    question: "How do we organize collective action?",
+    chain: [
+      ["Kinship rules", "forever"],
+      ["Tribal councils", "ancient"],
+      ["Written law", "~2,100 BC"],
+      ["Currency", "~600 BC"],
+      ["Bureaucracy", "~200 BC"],
+      ["Double-entry bookkeeping", "1494"],
+      ["Joint-stock company", "1602"],
+      ["Constitution", "1787"],
+      ["Telegraph networks", "1850s"],
+      ["Telephone networks", "1880s"],
+      ["Database systems", "1960s"],
+      ["Internet protocols", "1983"],
+      ["Blockchain", "2009"],
+    ],
+    note: "Coordination tech externalizes trust — from personal reputation to institutional rules to cryptographic proof."
+  },
+  {
+    need: "Meaning",
+    question: "How do I make sense of existence?",
+    chain: [
+      ["Ritual", "forever"],
+      ["Myth & storytelling", "ancient"],
+      ["Animism / religion", "ancient"],
+      ["Philosophy", "~600 BC"],
+      ["Theatre", "~500 BC"],
+      ["Sacred texts", "~1,400 BC"],
+      ["Scientific method", "1600s"],
+      ["Novel", "1700s"],
+      ["Cinema", "1890s"],
+      ["Psychotherapy", "1890s"],
+      ["Video games", "1970s"],
+      ["Social media identity", "2000s"],
+      ["AI companions", "2020s"],
+    ],
+    note: "Meaning-making technologies don't solve a problem — they externalize the process of interpretation itself."
+  },
+  {
+    need: "Energy",
+    question: "How do I power work beyond my muscles?",
+    chain: [
+      ["Human muscle", "forever"],
+      ["Fire", "~1M BC"],
+      ["Animal labor", "~4,000 BC"],
+      ["Waterwheel", "~300 BC"],
+      ["Windmill", "~600 AD"],
+      ["Steam engine", "1712"],
+      ["Oil drilling", "1859"],
+      ["Electrical grid", "1882"],
+      ["Nuclear fission", "1942"],
+      ["Solar photovoltaic", "1954"],
+      ["Wind turbines", "1970s"],
+      ["Battery storage", "2010s"],
+      ["Fusion (experimental)", "2020s"],
+    ],
+    note: "Energy tech externalizes metabolic effort — each step unlocks an order-of-magnitude more work per human."
+  },
+  {
+    need: "Identity",
+    question: "How do I signal who I am?",
+    chain: [
+      ["Body paint", "~100,000 BC"],
+      ["Jewelry & ornament", "~75,000 BC"],
+      ["Clothing", "~40,000 BC"],
+      ["Tattoo", "~3,000 BC"],
+      ["Heraldry", "~1,100 AD"],
+      ["Portraiture", "~1,400s"],
+      ["Fashion industry", "1800s"],
+      ["Photography (personal)", "1900s"],
+      ["Personal homepage", "1990s"],
+      ["Social media profile", "2004"],
+      ["Avatar / digital identity", "2020s"],
+    ],
+    note: "Identity tech externalizes self-presentation — until the curated version of you becomes a thing you maintain like infrastructure."
+  },
+];
+
+const container = document.getElementById('content');
+const nav = document.getElementById('nav');
+
+const accentColors = [
+  'var(--accent)', 'var(--accent2)', 'var(--accent3)', 'var(--accent4)',
+  'var(--accent5)', 'var(--accent6)', 'var(--accent7)', 'var(--accent8)',
+  'var(--accent9)', 'var(--accent10)', 'var(--accent11)', 'var(--accent12)'
+];
+
+data.forEach((row, i) => {
+  // Nav button
+  const btn = document.createElement('a');
+  btn.className = 'nav-btn';
+  btn.href = '#need-' + row.need.toLowerCase();
+  btn.textContent = row.need;
+  btn.style.setProperty('--btn-color', accentColors[i]);
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('need-' + row.need.toLowerCase()).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+  nav.appendChild(btn);
+
+  // Row
+  const div = document.createElement('div');
+  div.className = 'need-row';
+  div.id = 'need-' + row.need.toLowerCase();
+
+  let chainHTML = row.chain.map((item, j) => {
+    const arrow = j < row.chain.length - 1 ? `<span class="arrow">→</span>` : '';
+    return `<span class="tech-item"><span class="tech-name">${item[0]}<span class="era">${item[1]}</span></span>${arrow}</span>`;
+  }).join('');
+
+  div.innerHTML = `
+    <div class="need-header">
+      <span class="need-name">${row.need}</span>
+      <span class="need-question">${row.question}</span>
+    </div>
+    <div class="chain">${chainHTML}</div>
+    ${row.note ? `<div class="note">${row.note}</div>` : ''}
+  `;
+
+  container.appendChild(div);
+});
+
+// Footer
+const footer = document.createElement('div');
+footer.className = 'footer-note';
+footer.innerHTML = `Every row tells the same story at different speeds: a human need gets extended, then externalized, then systematized — until the technology begins reshaping the need itself. The most interesting moment in each chain is where the arrow stops pointing forward and starts curving back.`;
+container.appendChild(footer);
+</script>
+
+</body>
+</html>
